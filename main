@@ -1,0 +1,89 @@
+/***************************
+*------ Ira Martin --------*
+*----- Lottery Game -------*
+*------ Mar 5, 2013 -------*
+***************************/
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	char choice;
+	int userNum1, userNum2, userNum3;
+	int ranNum1, ranNum2, ranNum3;
+	unsigned int seed = time(0);
+	srand(seed);
+
+	do
+	{
+	//Descirbe what program does
+	cout << "\nThis program is a lottery game where you can\nguess three numbers to win a prize, for fun.\n\n";
+
+	//Generate three random numbers between 1 and 4
+	ranNum1 = 1 + rand() % 4;
+	ranNum2 = 1 + rand() % 4;
+	ranNum3 = 1 + rand() % 4;
+
+	//Get guesses from user
+	cout << "Input guess for first number: ( 1 through 4 )\n";
+	cin >> userNum1;
+	cout << "Input guess for second number: ( 1 through 4 )\n";
+	cin >> userNum2;
+	cout << "Input guess for third number: ( 1 through 4 )\n";
+	cin >> userNum3;
+
+	//Compare user's guesses to the random numbers and determine prize
+	if (ranNum1 == userNum1 && ranNum2 == userNum2 && ranNum3 == userNum3)
+	{
+		cout << "The random numbers are: " << ranNum1 << " " << ranNum2 << " " << ranNum3 << ": \n" << endl
+			 << "Your numbers are: " << userNum1 << " " << userNum2 << " " << userNum3 << ": \n" << endl
+			 << "You won the grand prize: $10,000!!!!\a\a\a\n\n";
+	}
+
+	else if (ranNum1 == userNum2 && ranNum2 == userNum3 && ranNum3 == userNum1 || ranNum1 == userNum3 && ranNum2 == userNum1 && 
+				 ranNum3 == userNum2 || ranNum1 == userNum3 && ranNum2 == userNum2 && ranNum3 == userNum1 || ranNum1 == userNum1 
+				 && ranNum2 == userNum3 && ranNum3 == userNum2 || ranNum1 == userNum2 && ranNum2 == userNum1 && ranNum3 == userNum3)
+	{
+		cout << "The random numbers are: " << ranNum1 << " " << ranNum2 << " " << ranNum3 << ": \n" << endl
+			 << "Your numbers are: " << userNum1 << " " << userNum2 << " " << userNum3 << ": \n" << endl
+			 << "Your numbers match but not in the exact order you win $1,000!!!\n\n";
+	}
+
+	else if (ranNum1 == userNum1 && ranNum2 == userNum3 || ranNum2 == userNum2 && ranNum3 == userNum1 || ranNum3 == userNum3 && 
+				ranNum1 == userNum2 || ranNum1 == userNum1 && ranNum2 == userNum2 || ranNum2 == userNum2 && ranNum3 == userNum3
+				|| ranNum1 == userNum1 && ranNum3 == userNum3 || ranNum3 == userNum1 && ranNum2 == userNum3 || ranNum3 == userNum1 
+				&& ranNum1 == userNum3 || ranNum1 == userNum3 && ranNum2 == userNum2 || ranNum1 == userNum2 && ranNum2 == userNum1
+				|| ranNum1 == userNum2 && ranNum3 == userNum1 || ranNum1 == userNum2 && ranNum2 == userNum3 || ranNum2 == userNum3 
+				&& ranNum3 == userNum2 || ranNum3 == userNum2 && ranNum1 == userNum1 || ranNum3 == userNum2 && ranNum2 == userNum1
+				|| ranNum2 == userNum1 && ranNum3 == userNum3)
+	{
+		cout << "The random numbers are: " << ranNum1 << " " << ranNum2 << " " << ranNum3 << ": \n" << endl
+			 << "Your numbers are: " << userNum1 << " " << userNum2 << " " << userNum3 << ": \n" << endl
+			 << "You got two matches, you win $100!!!\n\n";
+	}
+
+	else if (ranNum1 == userNum1 || ranNum1 == userNum2 || ranNum1 == userNum3 || ranNum2 == userNum1 || ranNum2 == userNum2 
+				|| ranNum2 == userNum3 || ranNum3 == userNum1 || ranNum3 == userNum2 || ranNum3 == userNum3)
+	{
+		cout << "The random numbers are: " << ranNum1 << " " << ranNum2 << " " << ranNum3 << ": \n" << endl
+			 << "Your numbers are: " << userNum1 << " " << userNum2 << " " << userNum3 << ": \n" << endl
+			 << "You got one match, you win $10!!!\n\n";
+	}
+
+	else
+	{
+		cout << "The random numbers are: " << ranNum1 << " " << ranNum2 << " " << ranNum3 << ": \n" << endl
+			 << "Your numbers are: " << userNum1 << " " << userNum2 << " " << userNum3 << ": \n" << endl
+			 << "You didn't win, sorry.\n\n";
+	}
+
+	//Ask if they want to play again
+	cout << "Would you like to play again? (Enter 'Y' for yes 'N' for no)\n";
+	cin >> choice;
+
+	} while ( choice == 'y' || choice == 'Y' );
+}
